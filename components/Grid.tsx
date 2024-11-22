@@ -1,22 +1,20 @@
 'use client'
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 const Grid = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { threshold: 0.5 });
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 100 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 1.5 }}
       className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8 lg:py-32"
     >
       <motion.div
         initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.5 }}
         className="bg-blue-600 rounded-lg p-8 text-white"
       >
@@ -25,7 +23,8 @@ const Grid = () => {
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.7 }}
         className="bg-blue-600 rounded-lg p-8 text-white"
       >
@@ -34,7 +33,8 @@ const Grid = () => {
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.9 }}
         className="bg-blue-600 rounded-lg p-8 text-white"
       >
@@ -43,7 +43,8 @@ const Grid = () => {
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 1, delay: 1.1 }}
         className="bg-blue-600 rounded-lg p-8 text-white"
       >

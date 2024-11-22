@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'motion/react';
-import Grid from './Grid';
+
 const Hero = () => {
     return (
         <div>
