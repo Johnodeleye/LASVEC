@@ -20,7 +20,7 @@ const Hero = () => {
 <motion.div
       initial={{ opacity: 0, y:100 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2.5 }} 
+      transition={{ duration: 1.5 }} 
       whileInView={{ opacity: 1, y:0 }}
       viewport={{once: true}}
     className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"

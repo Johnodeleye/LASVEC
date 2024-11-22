@@ -4,11 +4,7 @@ import { motion } from "motion/react";
 
 const Grid = () => {
     return (
-      <motion.div
-      animate={{
-        scale: 2,
-        transition: { duration: 2 }
-      }}
+      <div
          className="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8 lg:py-32">
         <div className="bg-blue-600 rounded-lg p-8 text-white">
           <h3 className="text-lg font-bold mb-2">Step 1: Register to Vote</h3>
@@ -26,7 +22,7 @@ const Grid = () => {
           <h3 className="text-lg font-bold mb-2">Step 4: Verify Election Integrity</h3>
           <p className="text-sm">Confirm that your vote was recorded accurately, and review the audit trail to ensure the integrity of the election.</p>
         </div>
-      </motion.div>
+      </div>
     );
   };
   
