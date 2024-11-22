@@ -1,6 +1,9 @@
+'use client';
 import Image from "next/image"
+import { useState } from "react"
 
 const Header = () => {
+    const [mobileMenu, setMobileMenu] = useState(false)
     return (
 <header className="bg-white/40 shadow ">
   <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -23,23 +26,23 @@ const Header = () => {
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Careers </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Careers </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> History </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> History </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Services </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Services </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Projects </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Projects </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Blog </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Blog </a>
             </li>
           </ul>
         </nav>
@@ -65,7 +68,7 @@ const Header = () => {
         </div>
 
         <div className="block md:hidden">
-          <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+          <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75" onClick={() => setMobileMenu(true)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="size-5"
@@ -80,6 +83,22 @@ const Header = () => {
         </div>
       </div>
     </div>
+             {/* ------------Mobile Menu----------------- */}
+             {mobileMenu && (
+      <div className="z-50 fixed top-0 bottom-0 right-0 w-full overflow-hidden transition-transform ease-in-out bg-blue-950 duration-5000s md:hidden text-white">
+        <div className='flex justify-end p-6 cursor-pointer '>
+          <img src={'/close.svg'} className='w-6' alt="close"  onClick={() => setMobileMenu(false)}/>
+        </div>
+        <ul className='flex flex-col items-center gap-2 px-5 mt-5 text-lg font-medium'>
+        <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Home</a>
+        <a onClick={() => setMobileMenu(false)} href="#About" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>About Us</a>
+        <a onClick={() => setMobileMenu(false)} href="#Project" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Events</a>
+        <a onClick={() => setMobileMenu(false)} href="#Testimonials" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Sermon</a>
+        <a onClick={() => setMobileMenu(false)} href="#Testimonials" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Online Giving</a>
+        <a onClick={() => setMobileMenu(false)} href="https://hubpost-app.vercel.app/authors/testmail@gmail.com" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent'>Blog</a>
+        </ul>
+      </div>
+      )}
   </div>
 </header>
     )
