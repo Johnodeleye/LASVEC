@@ -1,4 +1,5 @@
 'use client';
+import { SquareX } from "lucide-react";
 import Image from "next/image"
 import { useState } from "react"
 
@@ -86,8 +87,8 @@ const Header = () => {
              {/* ------------Mobile Menu----------------- */}
              {mobileMenu && (
       <div className="z-50 fixed top-0 bottom-0 right-0 w-full overflow-hidden transition-transform ease-in-out bg-blue-950 duration-5000s md:hidden text-white">
-        <div className='flex justify-end p-6 cursor-pointer '>
-          <img src={'/close.svg'} className='w-6' alt="close"  onClick={() => setMobileMenu(false)}/>
+        <div className='flex justify-end p-6 cursor-pointer ' onClick={() => setMobileMenu(false)}>
+        <SquareX color="red" />
         </div>
         <ul className='flex flex-col items-center gap-2 px-5 mt-5 text-lg font-medium'>
         <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Home</a>
