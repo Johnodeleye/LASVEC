@@ -1,3 +1,4 @@
+import Grid from './Grid';
 const Hero = () => {
     return (
         <div>

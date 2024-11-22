@@ -1,7 +1,9 @@
+import Grid from "@/components/Grid"
+
 const page = () => {
   return (
     <div>
-      hello
+      <Grid/>
     </div>
   )
 }
