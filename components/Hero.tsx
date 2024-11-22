@@ -1,3 +1,5 @@
+'use client';
+import { motion } from 'motion/react';
 import Grid from './Grid';
 const Hero = () => {
     return (
@@ -15,7 +17,12 @@ const Hero = () => {
     className="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
   ></div>
 
-  <div
+<motion.div
+      initial={{ opacity: 0, y:100 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2.5 }} 
+      whileInView={{ opacity: 1, y:0 }}
+      viewport={{once: true}}
     className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8"
   >
     <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
@@ -45,7 +52,7 @@ const Hero = () => {
         </a>
       </div>
     </div>
-  </div>
+  </motion.div>
 </section>
         </div>
     )
