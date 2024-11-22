@@ -22,24 +22,24 @@ const Header = () => {
       <div className="hidden md:block">
         <nav aria-label="Global">
           <ul className="flex items-center gap-6 text-sm">
+          <li>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Home </a>
+            </li>
+
             <li>
               <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> About </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Careers </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> FAQ </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> History </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Contact </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Services </a>
-            </li>
-
-            <li>
-              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Projects </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#"> Upcoming Events </a>
             </li>
 
             <li>
@@ -93,10 +93,11 @@ const Header = () => {
         <ul className='flex flex-col items-center gap-2 px-5 mt-5 text-lg font-medium'>
         <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Home</a>
         <a onClick={() => setMobileMenu(false)} href="#About" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>About Us</a>
-        <a onClick={() => setMobileMenu(false)} href="#Project" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Events</a>
-        <a onClick={() => setMobileMenu(false)} href="#Testimonials" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Sermon</a>
-        <a onClick={() => setMobileMenu(false)} href="#Testimonials" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Online Giving</a>
-        <a onClick={() => setMobileMenu(false)} href="https://hubpost-app.vercel.app/authors/testmail@gmail.com" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent'>Blog</a>
+        <a onClick={() => setMobileMenu(false)} href="#Project" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>FAQ</a>
+        <a onClick={() => setMobileMenu(false)} href="#Testimonials" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Contact Us</a>
+        <a onClick={() => setMobileMenu(false)} href="#Testimonials" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Upcoming Events</a>
+        <a onClick={() => setMobileMenu(false)} href="#Testimonials" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Blog</a>
+        <a onClick={() => setMobileMenu(false)} href="https://hubpost-app.vercel.app/authors/testmail@gmail.com" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent hover:border border-white'>REGISTER</a>
         </ul>
       </div>
       )}
