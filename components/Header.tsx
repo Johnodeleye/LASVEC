@@ -1,5 +1,6 @@
 'use client';
 import { SquareX } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image"
 import { useState } from "react"
 
@@ -7,8 +8,20 @@ const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false)
     return (
 <header className="bg-white/40 shadow ">
-  <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-    <div className="flex h-16 items-center justify-between">
+<motion.div 
+    initial={{ opacity: 0, x:-200 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }} 
+    whileInView={{ opacity: 1, x:0 }}
+    viewport={{once: true}}
+    className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+    <motion.div 
+    initial={{ opacity: 0, x:-200 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1 }} 
+    whileInView={{ opacity: 1, x:0 }}
+    viewport={{once: true}} 
+    className="flex h-16 items-center justify-between">
       <div className="md:flex md:items-center md:gap-12">
         <a className="block text-teal-600" href="#">
           <span className="sr-only">Home</span>
@@ -83,12 +96,22 @@ const Header = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
              {/* ------------Mobile Menu----------------- */}
              {mobileMenu && (
-      <div className="z-50 fixed top-0 bottom-0 right-0 w-full overflow-hidden transition-transform ease-in-out bg-blue-950 duration-5000s md:hidden text-white">
+      <motion.div 
+      initial={{ opacity: 0, x:-200 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }} 
+      whileInView={{ opacity: 1, x:0 }}
+      viewport={{once: true}}
+      className="z-50 fixed top-0 bottom-0 right-0 w-full overflow-hidden transition-transform ease-in-out bg-blue-950 duration-5000s md:hidden text-white">
         <div className='flex justify-end p-6 cursor-pointer ' onClick={() => setMobileMenu(false)}>
         <SquareX color="red" />
+        </div>
+        <div className="flex justify-center gap-1">
+            <Image src={'/lagos.png'} alt="logo" width={32} height={40}/>
+            <Image src={'/logo.png'} alt="logo" width={100} height={100}/>
         </div>
         <ul className='flex flex-col items-center gap-2 px-5 mt-5 text-lg font-medium'>
         <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Home</a>
@@ -99,9 +122,12 @@ const Header = () => {
         <a onClick={() => setMobileMenu(false)} href="#Testimonials" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Blog</a>
         <a onClick={() => setMobileMenu(false)} href="https://hubpost-app.vercel.app/authors/testmail@gmail.com" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent hover:border border-white'>REGISTER</a>
         </ul>
-      </div>
+        <div className="px-10 flex justify-center text-center mt-44 font-bold">
+        <p className="text-sm text-gray-400">~ODELEYE JOHN | Software Developer | Founder, HubPost</p>
+        </div>
+      </motion.div>
       )}
-  </div>
+  </motion.div>
 </header>
     )
 }
