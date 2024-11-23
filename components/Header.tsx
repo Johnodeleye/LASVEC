@@ -11,16 +11,11 @@ const Header = () => {
 <motion.div 
     initial={{ opacity: 0, x:-200 }}
     animate={{ opacity: 1 }}
-    transition={{ duration: 1 }} 
+    transition={{ duration: 0.8 }} 
     whileInView={{ opacity: 1, x:0 }}
     viewport={{once: true}}
     className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-    <motion.div 
-    initial={{ opacity: 0, x:-200 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1 }} 
-    whileInView={{ opacity: 1, x:0 }}
-    viewport={{once: true}} 
+    <div
     className="flex h-16 items-center justify-between">
       <div className="md:flex md:items-center md:gap-12">
         <a className="block text-teal-600" href="#">
@@ -96,7 +91,7 @@ const Header = () => {
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
              {/* ------------Mobile Menu----------------- */}
              {mobileMenu && (
       <motion.div 
