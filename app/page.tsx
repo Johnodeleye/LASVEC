@@ -1,3 +1,4 @@
+import About from "@/components/About"
 import Features from "@/components/Features"
 import Grid from "@/components/Grid"
 
@@ -6,6 +7,7 @@ const page = () => {
     <div>
       <Grid/>
       <Features/>
+      <About/>
     </div>
   )
 }
