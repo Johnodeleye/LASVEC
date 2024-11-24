@@ -46,14 +46,14 @@ const About  = () => {
       transition={{ duration: 0.1 }} 
   className="items-center bg-gray-100 rounded-lg shadow sm:flex transition-all duration-500 cursor-pointer hover:bg-blue-600 group">
         <a href="https://perspicaciousdev.vercel.app">
-        <img className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="/John.webp" alt="Bonnie Avatar"/>
+        <img className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="/John.webp" alt="John Avatar"/>
     </a>
         <div className="p-5">
         <h3 className="text-xl font-bold tracking-tight text-gray-900 group-hover:text-white">
         <a href="#">ODELEYE JOHN AYOMIDE</a>
         </h3>
         <span className="text-gray-500 group-hover:text-white">Software Developer | Founder, HubPost</span>
-        <p className="mt-3 mb-4 font-light text-gray-500 group-hover:text-white">Bonnie drives the technical strategy of the flowbite platform and brand.</p>
+        <p className="mt-3 mb-4 font-light text-gray-500 group-hover:text-white">Odeleye John Ayomide (Perspicacious) is a visionary young tech enthusiast and software developer. As founder of HubPost, he's poised to revolutionize the tech world with innovative ideas and solutions.</p>
         <ul className="flex space-x-4 sm:mt-0">
         <li>
             <a href="#" className="text-gray-500 hover:text-white group-hover:text-white">
