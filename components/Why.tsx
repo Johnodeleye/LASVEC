@@ -14,7 +14,7 @@ const Why = () => {
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                   <div className="py-3 sm:py-4">
                     <img
-                      src='/vote.jpg'
+                      src='/VOTE.jpg'
                       alt="vote flyer"
                       className="w-full rounded-2xl"
                     />
