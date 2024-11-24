@@ -7,7 +7,7 @@ import { useState } from "react"
 const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false)
     return (
-<header className="bg-white/40 shadow ">
+<header className="bg-gray-100 shadow ">
 <motion.div 
     initial={{ opacity: 0, x:-200 }}
     animate={{ opacity: 1 }}
@@ -39,7 +39,7 @@ const Header = () => {
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-blue-500/75" href="#FAQ"> FAQ </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="#Faq"> FAQ </a>
             </li>
 
             <li>
@@ -111,9 +111,9 @@ const Header = () => {
         <ul className='flex flex-col items-center gap-2 px-5 mt-5 text-lg font-medium'>
         <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Home</a>
         <a onClick={() => setMobileMenu(false)} href="#About" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>About Us</a>
-        <a onClick={() => setMobileMenu(false)} href="#FAQ" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>FAQ</a>
+        <a onClick={() => setMobileMenu(false)} href="#Faq" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>FAQ</a>
         <a onClick={() => setMobileMenu(false)} href="#Contact" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Contact Us</a>
-        <a onClick={() => setMobileMenu(false)} href="/events" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Upcoming Events</a>
+        <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Upcoming Events</a>
         <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Blog</a>
         <a onClick={() => setMobileMenu(false)} href="/register" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent hover:border border-white'>REGISTER</a>
         </ul>

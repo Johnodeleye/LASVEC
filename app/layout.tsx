@@ -20,7 +20,6 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
       <body className={inter.className} >
         {/* <ToggleButton /> */}
         <Header/>
-        <Hero/>
         {children}
       </body>
     </html>

@@ -1,34 +1,75 @@
+'use client';
 import Image from "next/image";
 import React from "react";
 import vote from '@/assets/VOTE.jpg'
 import { CheckIcon, Vote } from "lucide-react";
+import { motion } from "motion/react";
 
 const Why = () => {
   return (
     <>
       <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
-        <div className="container mx-auto px-12">
-          <div className="flex flex-wrap items-center justify-between -mx-4">
-            <div className="w-full px-4 lg:w-6/12">
-              <div className="flex items-center -mx-3 sm:-mx-4">
+        <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="container mx-auto px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }} 
+            className="flex flex-wrap items-center justify-between -mx-4">
+            <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }} 
+            className="w-full px-4 lg:w-6/12">
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1 }}  
+                className="flex items-center -mx-3 sm:-mx-4">
                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
-                  <div className="py-3 sm:py-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.1 }}  
+                    className="py-3 sm:py-4">
                     <img
                       src='/VOTE.jpg'
                       alt="vote flyer"
                       className="w-full rounded-2xl"
                     />
-                  </div>
-                  <div className="py-3 sm:py-4">
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.1 }}  
+                    className="py-3 sm:py-4">
                     <img
                       src="/summit.png "
                       alt="summit"
                       className="w-full rounded-2xl size-fit"
                     />
-                  </div>
+                  </motion.div>
                 </div>
-                <div className="w-full px-3 sm:px-4 xl:w-1/2">
-                  <div className="relative z-10 my-4">
+                <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.1 }}  
+                className="w-full px-3 sm:px-4 xl:w-1/2">
+                  <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.1 }}  className="relative z-10 my-4">
                     <img
                       src="/votesonwo.jpg"
                       alt="vote sanwoolu"
@@ -604,13 +645,24 @@ const Why = () => {
                         />
                       </svg>
                     </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
 
-            <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-            <div className="mt-10 lg:mt-0">
+            <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }} 
+            className="w-full px-4 lg:w-1/2 xl:w-5/12">
+            <motion.div
+            initial={{ opacity: 0, y:100 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }} 
+            whileInView={{ opacity: 1, y:0 }}
+            viewport={{once: true}} 
+            className="mt-10 lg:mt-0">
             <span className="block mb-4 text-lg font-semibold text-blue-600">
                 Why LASVEC?
             </span>
@@ -629,10 +681,10 @@ const Why = () => {
             >
                 Get Started with LASVEC <Vote color="white"/>
             </a>
-            </div>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </section>
     </>
   );
