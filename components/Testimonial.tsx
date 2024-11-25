@@ -73,11 +73,11 @@ function Testimony() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative px-4">
       <div className="keen-slider" ref={keenSliderRef}>
         {/* Your slides here */}
         <div className="keen-slider__slide">
-        <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+        <blockquote className="rounded-lg bg-white p-6 shadow-sm sm:p-8">
             <div className="flex items-center gap-4">
               <img
                 alt=""
