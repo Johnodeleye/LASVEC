@@ -11,6 +11,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "framer-motion": "^12.0.0-alpha.1",
+    "keen-slider": "^6.8.6",
     "lucide": "^0.460.0",
     "lucide-react": "^0.460.0",
     "mongoose": "^8.8.2",

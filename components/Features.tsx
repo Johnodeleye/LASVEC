@@ -25,7 +25,7 @@ const Features = () => {
                     </div>
                     <div className="relative w-full text-left lg:text-left lg:w-2/4 px-4">
                         <p className="text-lg font-normal text-gray-500 mb-5">LASVEC is revolutionizing the way we vote. Our secure, transparent, and easy-to-use e-voting system ensures that every vote is counted accurately and efficiently. </p>
-                        <a href="#About" className="flex flex-row items-center justify-center gap-2 text-base font-semibold text-blue-600 lg:justify-start hover:text-blue-700 ">Learn more
+                        <a href="#About" className="flex flex-row items-center justify-left gap-2 text-base font-semibold text-blue-600 lg:justify-start hover:text-blue-700 ">Learn more
                             <ChevronRight color="blue" />
                         </a>
                     </div>
