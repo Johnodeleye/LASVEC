@@ -5,6 +5,7 @@ import Vision from "@/components/Vision"
 import Why from "@/components/Why"
 import Accordion from "@/components/Faq"
 import Hero from "@/components/Hero"
+import Contact from "@/components/Contact"
 
 const page = () => {
   return (
@@ -16,6 +17,7 @@ const page = () => {
       <Why/>
       <Vision/>
       <Accordion/>
+      <Contact/>
     </div>
   )
 }

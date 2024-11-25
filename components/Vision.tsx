@@ -11,7 +11,7 @@ const Vision = () => {
         viewport={{ once: true }}
         transition={{ duration: 1.5 }} 
         className="max-w-5xl mx-auto px-14 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-blue-900">Transforming Democracy Through Technology</h2>
+        <h2 className="text-3xl font-extrabold text-blue-900 md:text-center">Transforming Democracy Through Technology</h2>
         <motion.div
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -28,16 +28,15 @@ const Accordion = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5 }} 
-            className="mx-auto mb-[60px] max-w-[520px] text-center lg:mb-20">
+            className="mx-auto mb-[60px] max-w-[520px] text-left md:text-center lg:mb-20">
               <span className="mb-2 block text-4xl font-semibold text-blue-600">
-                FAQs
+              Frequently Asked Questions
               </span>
               <h2 className="mb-4 text-3xl font-bold text-blue-600 sm:text-[40px]/[48px]">
-                Any Questions? Look Here
+              Get Answers to Your Voting Questions
               </h2>
               <p className="text-base text-body-color dark:text-dark-6">
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
+              Find helpful information regarding LASVEC's e-voting process.
               </p>
             </motion.div>
           </motion.div>
@@ -49,7 +48,11 @@ const Accordion = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.1 }}  
         className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4 lg:w-1/2">
+            <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5 }}  className="w-full px-4 lg:w-1/2">
             <AccordionItem
               header="What is LASVEC?"
               text="LASVEC is the Lagos State Electronic Voting System, designed to conduct credible and transparent elections in Lagos State."
@@ -58,12 +61,25 @@ const Accordion = () => {
               header="How do I register to vote?"
               text="To register, create an account on the LASVEC portal and verify your identity to ensure secure and legitimate voting."
             />
-            <AccordionItem
-              header="How long we deliver your first blog post?"
-              text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
-            />
-          </div>
-          <div className="w-full px-4 lg:w-1/2">
+        <AccordionItem
+        header="What are the requirements for registration?"
+        text="To register, you'll need to provide the following:
+
+
+        • Valid ID Card (Driver’s License/International Passport/National ID Card)
+        • Passport Photograph
+        • Birth Certificate
+        • Proof of Lagos State Residency (e.g., utility bill, lease agreement)
+        • Valid email address
+        • Valid phone number
+        • Unique username and password for your LASVEC account"
+      />
+          </motion.div>
+          <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5 }}  className="w-full px-4 lg:w-1/2">
             <AccordionItem
               header="What are the benefits of using LASVEC?"
               text="LASVEC provides a secure, transparent, and efficient e-voting platform, ensuring the integrity and accuracy of elections."
@@ -76,7 +92,7 @@ const Accordion = () => {
               header="Can I track election results?"
               text="Yes, LASVEC provides real-time election results, ensuring transparency and accountability throughout the process ."
             />
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -86,35 +102,43 @@ const Accordion = () => {
         transition={{ duration: 0.1 }}  
         className="-mx-4 flex flex-wrap">
           
-        <div className="w-full px-4 lg:w-1/2">
+        <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5 }}  className="w-full px-4 lg:w-1/2">
             <AccordionItem
               header="How does LASVEC ensure the integrity of elections?"
               text="LASVEC uses end-to-end encryption, secure voter authentication, and real-time results to ensure the integrity and accuracy of elections."
             />
             <AccordionItem
-              header="What if I encounter issues while voting?"
-              text="Contact the LASVEC support team for assistance with any issues or concerns during the voting process."
+            header="What is the minimum age required to vote?"
+            text="The minimum age required to vote is 18 years. According to the Constitution, every citizen who has attained the age of 18 is eligible to vote ¹."
             />
             <AccordionItem
               header="Is my personal information secure?"
               text="Yes, LASVEC ensures the security and confidentiality of all personal information and voting data."
             />
-          </div>
+          </motion.div>
                     
-          <div className="w-full px-4 lg:w-1/2">
-            <AccordionItem
-              header="How does LASVEC ensure the integrity of elections?"
-              text="LASVEC uses end-to-end encryption, secure voter authentication, and real-time results to ensure the integrity and accuracy of elections."
-            />
-            <AccordionItem
-              header="What if I encounter issues while voting?"
-              text="Contact the LASVEC support team for assistance with any issues or concerns during the voting process."
-            />
-            <AccordionItem
-              header="Is my personal information secure?"
-              text="Yes, LASVEC ensures the security and confidentiality of all personal information and voting data."
-            />
-          </div>
+          <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5 }}  className="w-full px-4 lg:w-1/2">
+        <AccordionItem
+          header="Can i change my vote after submitting it?"
+          text="No once you've submitted your vote, it cannot be changed. please enure you've selected the correct options before submitting."
+        />
+        <AccordionItem
+          header="How do i report any issues or concerns during the voting process?"
+          text="You can contact the LASVEC support team via phone, email, or through the in-app support chat."
+        />
+        <AccordionItem
+          header="Is my vote confidential and secured?"
+          text="Yes, LASVEC ensures the confidentiality and security of all votes. Your Personal infromation and voting data are protected and secure."
+        />
+      </motion.div>
         </motion.div>
 
       </motion.div>

@@ -20,18 +20,18 @@ const Features = () => {
       whileInView={{ opacity: 1, y:0 }}
       viewport={{once: true}}
         className="mb-10 lg:mb-16 flex justify-center items-center flex-col gap-x-0 gap-y-6 lg:gap-y-0 lg:flex-row lg:justify-between max-md:max-w-lg max-md:mx-auto">
-                    <div className="relative w-full text-center lg:text-left lg:w-2/4">
+                    <div className="relative w-full  lg:text-left lg:w-2/4 text-left px-4">
                         <h2 className="text-4xl font-bold text-blue-600 leading-[3.25rem] lg:mb-6 mx-auto max-w-max lg:max-w-md lg:mx-0">Enjoy the Exclusive Features with Easy LASVEC</h2>
                     </div>
-                    <div className="relative w-full text-center  lg:text-left lg:w-2/4">
+                    <div className="relative w-full text-left lg:text-left lg:w-2/4 px-4">
                         <p className="text-lg font-normal text-gray-500 mb-5">LASVEC is revolutionizing the way we vote. Our secure, transparent, and easy-to-use e-voting system ensures that every vote is counted accurately and efficiently. </p>
-                        <a href="#" className="flex flex-row items-center justify-center gap-2 text-base font-semibold text-blue-600 lg:justify-start hover:text-blue-700 ">Learn more
+                        <a href="#About" className="flex flex-row items-center justify-center gap-2 text-base font-semibold text-blue-600 lg:justify-start hover:text-blue-700 ">Learn more
                             <ChevronRight color="blue" />
                         </a>
                     </div>
                 </motion.div>
 
-                <div className="flex justify-center items-center  gap-x-5 gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8">
+                <div className="flex justify-center items-center  gap-x-5 gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8 px-4">
                     <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -100,7 +100,7 @@ const Features = () => {
         </section>
 
         <section className="pb-24 ">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl  sm:px-6 lg:px-8 px-4">
                     {/* <div className="mb-10 lg:mb-16 flex justify-center items-center flex-col gap-x-0 gap-y-6 lg:gap-y-0 lg:flex-row lg:justify-between max-md:max-w-lg max-md:mx-auto">
                         <div className="relative w-full text-center lg:text-left lg:w-2/4">
                             <h2 className="text-4xl font-bold text-blue-600 leading-[3.25rem] lg:mb-6 mx-auto max-w-max lg:max-w-md lg:mx-0">Enjoy the Exclusive Features with Easy LASVEC</h2>
@@ -112,7 +112,7 @@ const Features = () => {
                             </a>
                         </div>
                     </div> */}
-                    <div className="flex justify-center items-center  gap-x-5 gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8">
+                    <div className="flex justify-center items-center  gap-x-5 gap-y-8 lg:gap-y-0 flex-wrap md:flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between lg:gap-x-8 px-4">
                         <motion.div 
                    initial={{ opacity: 0 }}
                    whileInView={{ opacity: 1 }}

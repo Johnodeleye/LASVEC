@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Outfit } from 'next/font/google';
-const inter = Outfit({ subsets: ['latin'] })
+import { Outfit, Open_Sans } from 'next/font/google';
+const inter = Outfit ({ subsets: ['latin'] })
 import ToggleButton from '@/components/ToggleButton';
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
