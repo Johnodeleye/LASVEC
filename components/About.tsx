@@ -50,18 +50,18 @@ const About  = () => {
     </a>
         <div className="p-5">
         <h3 className="text-xl font-bold tracking-tight text-gray-900 group-hover:text-white">
-        <a href="/">ODELEYE JOHN AYOMIDE</a>
+        <a href="https://perspicaciousdev.vercel.app">ODELEYE JOHN AYOMIDE</a>
         </h3>
         <span className="text-gray-500 group-hover:text-white">Software Developer | Founder, HubPost</span>
         <p className="mt-3 mb-4 font-light text-gray-500 group-hover:text-white">Odeleye John Ayomide (Perspicacious) is a visionary young tech enthusiast and software developer. As founder of HubPost, he's poised to revolutionize the tech world with innovative ideas and solutions.</p>
         <ul className="flex space-x-4 sm:mt-0">
         <li>
-            <a href="/" className="text-gray-500 hover:text-white group-hover:text-white">
+            <a href="https://youtube.com/@perspicaciousdev" className="text-gray-500 hover:text-white group-hover:text-white">
                                <Youtube className="w-4/5"/>
                             </a>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-500 hover:text-white group-hover:text-white">
+                            <a href="https://x.com/pthefuture_" className="text-gray-500 hover:text-white group-hover:text-white">
                                 <Twitter className="w-4/5"/>
                             </a>
                         </li>
@@ -71,7 +71,7 @@ const About  = () => {
                             </a>
                         </li>
                         <li>
-                            <a href="/" className="text-gray-500 hover:text-white group-hover:text-white">
+                            <a href="https://instagram.com/perspicacious.dev" className="text-gray-500 hover:text-white group-hover:text-white">
                                 <Instagram className="w-4/5 "/>
                       </a>
                         </li>

@@ -18,7 +18,7 @@ const Header = () => {
     <div
     className="flex h-16 items-center justify-between">
       <div className="md:flex md:items-center md:gap-12">
-        <a className="block text-teal-600" href="#">
+        <a className="block text-teal-600" href="/">
           <span className="sr-only">Home</span>
           <div className="flex flex-row gap-2">
           <Image src={'/lagos.png'} alt="Lasvec logo" width={32} height={40}/>
@@ -118,7 +118,7 @@ const Header = () => {
         <a onClick={() => setMobileMenu(false)} href="/register" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent hover:border border-white'>REGISTER</a>
         </ul>
         <div className="px-10 flex justify-center text-center mt-44 font-bold">
-        <p className="text-sm text-gray-400">~ODELEYE JOHN | Software Developer | Founder, HubPost</p>
+        <a href='https://perspicaciousdev.vercel.app' className="text-sm text-gray-400">~ODELEYE JOHN | Software Developer | Founder, HubPost</a>
         </div>
       </motion.div>
       )}
