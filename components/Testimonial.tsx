@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 import 'keen-slider/keen-slider.min.css';
 import { ArrowLeft, ArrowLeftCircle, ArrowRightCircle, MoveLeft } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface KeenSliderExtended extends KeenSliderInstance {
   details: () => any;
@@ -74,13 +75,22 @@ function Testimony() {
   };
 
   return (
-    <div className="relative px-4 py-12 pb-16">
+    <motion.div
+    initial={{ opacity: 0, y: 100 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 1.5 }}  className="relative px-4 py-12 pb-16">
           <h2 className="text-left md:text-center text-4xl font-bold tracking-tight text-blue-600 sm:text-5xl pb-4 px-6 md:pb-6">
       Read trusted reviews from our customers
     </h2>
-      <div className="keen-slider" ref={keenSliderRef}>
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5 }}  className="keen-slider" ref={keenSliderRef}>
         {/* Your slides here */}
-        <div className="keen-slider__slide">
+        <div
+      className="keen-slider__slide">
         <blockquote className="rounded-lg bg-white p-6 shadow-sm sm:p-8">
             <div className="flex items-center gap-4">
               <img
@@ -303,7 +313,7 @@ function Testimony() {
           </blockquote>
         </div>
         {/* Add more slides as needed */}
-      </div>
+      </motion.div>
 
       <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-4 pt-2">
         <button className="bg-gray-200 hover:bg-gray-300 rounded-full p-2 pt-2" onClick={handlePrevClick}>
@@ -324,7 +334,7 @@ function Testimony() {
           <ArrowRightCircle color='blue'/>
         </button>
         </div>
-        </div>
+        </motion.div>
   )
 }
 

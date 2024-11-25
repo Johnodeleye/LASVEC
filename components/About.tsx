@@ -85,12 +85,12 @@ const About  = () => {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.1 }}  className="items-center bg-gray-100 rounded-lg shadow sm:flex transition-all duration-500 cursor-pointer hover:bg-blue-600 group">
-    <a href="/">
+    <a href="https://www.instagram.com/akintunde_brave/">
         <img className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded_episode400/2164677/2164677-1661647446915-d2fe2f1a19451.jpg" alt="akintunde Avatar"/>
     </a>
   <div className="p-5">
     <h3 className="text-xl font-bold tracking-tight text-gray-900 group-hover:text-white">
-      <a href="https://instagram.com/akintunde_brave" className="group-hover:text-white">AKINTUNDE OPEYEMI IDOWU</a>
+      <a href="https://www.instagram.com/akintunde_brave/" className="group-hover:text-white">AKINTUNDE OPEYEMI IDOWU</a>
     </h3>
     <span className="text-gray-500 group-hover:text-white">Host, All Things Teens Podcast</span>
     <p className="mt-3 mb-4 font-light text-gray-500 group-hover:text-white">Akintunde is the driving force behind @allthingsteenspodcast, a platform where he shares inspiring stories, insightful discussions, and expert advice, catering to the interests and concerns of teenagers and young adults.</p>
@@ -126,12 +126,12 @@ const About  = () => {
       viewport={{ once: true }}
       transition={{ duration: 0.1 }} 
        className="items-center bg-gray-100 rounded-lg shadow sm:flex transition-all duration-500 cursor-pointer hover:bg-blue-600 group">
-    <a href="/">
+    <a href="https://www.instagram.com/allthingsteenpodcast/">
         <img className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo400/2164677/2164677-1721211901946-bbc24b23d861b.jpg" alt="Jese Avatar"/>
     </a>
   <div className="p-5">
     <h3 className="text-xl font-bold tracking-tight text-gray-900 group-hover:text-white">
-      <a href="/" className="group-hover:text-white">ALL THINGS TEENS PODCAST</a>
+      <a href="https://www.instagram.com/allthingsteenpodcast/" className="group-hover:text-white">ALL THINGS TEENS PODCAST</a>
     </h3>
     <span className="text-gray-500 group-hover:text-white">"Host & Organizer, All Things Teens Podcast and Annual Teens Summit</span>
     <p className="mt-3 mb-4 font-light text-gray-500 group-hover:text-white">All Things Teens Podcast delves into real conversations and stories that matter to teens.</p>
@@ -147,7 +147,7 @@ const About  = () => {
         </a>
       </li>
       <li>
-        <a href="/" className="text-gray-500 hover:text-white group-hover:text-white">
+        <a href="https://www.instagram.com/allthingsteenpodcast/" className="text-gray-500 hover:text-white group-hover:text-white">
           <Instagram className='group-hover:text-white w-4/5'/>
         </a>
       </li>

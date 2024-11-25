@@ -2,7 +2,7 @@
 import { BadgeCheck, Vote, Waves } from "lucide-react";
 import { signIn } from "next-auth/react"
 
-const LoginBtn = () => {
+const SignBtn = () => {
     return (
             <div className="flex items-center justify-center font-poppins bg-[url(https://readymadeui.com/signin-image.webp)] bg-cover bg-center bg-no-repeat">
     <div className="flex items-center justify-center w-screen h-screen bg-white/75">
@@ -15,17 +15,27 @@ const LoginBtn = () => {
           className="border-[20px] border-transparent rounded-[20px] bg-black/65 shadow-lg xl:p-10 2xl:p-10 lg:p-10 md:p-10 sm:p-2 m-2"
         >
             <div className="flex gap-2">
-          <h2 className="pt-8 text-3xl font-bold text-left md:text-center cursor-default text-blue-500 md:pl-12">
-            Welcome Back
+          <h2 className="pt-8 text-2xl font-bold text-left md:text-center cursor-default text-blue-500 md:pl-12">
+            Welcome To
           </h2>
-          <div className="mt-9">
-          <BadgeCheck color="green" size={'30'}/>
+          <h2 className="pt-8 text-2xl font-bold text-left md:text-center cursor-default text-blue-500">
+          LASVEC
+          </h2>
           </div>
-          </div>
-          <h2 className="text-3xl font-bold text-left md:text-center cursor-default text-blue-500 pb-6">
-          Log in to continue
+          <h2 className="text-2xl font-bold text-left md:text-center cursor-default text-blue-500 pb-6">
+          Get Started to continue
           </h2>
           <form action="#" method="post" className="space-y-4">
+            <div>
+              <label  className="mb-2 text-lg text-gray-400">Full Name</label>
+              <input
+                id="name"
+                className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
+                type="text"
+                placeholder="Full Name"
+                required
+              />
+            </div>
             <div>
               <label  className="mb-2 text-lg text-gray-400">Email</label>
               <input
@@ -60,20 +70,20 @@ const LoginBtn = () => {
               className="w-full p-2 mt-6 text-white font-serif transition duration-300 ease-in-out rounded-lg shadow-lg bg-gradient-to-r from-blue-600 to-green-500 hover:scale-105 hover:from-green-500 hover:to-blue-600"
               type="submit"
             >
-              LOG IN
+              JOIN LASVEC
             </button>
           </form>
           <div className="flex flex-col items-center justify-center mt-4 text-sm">
             <h3 className="text-gray-300">
-              Don't have an account?
+              Already have an account?
               <a
                 className="text-blue-400 transition-all duration-100 ease-in-out group"
-                href="/register"
+                href="/login"
               >
                 <span
                   className="bg-left-bottom bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out ml-2"
                 >
-                  Sign Up
+                  Log in
                 </span>
               </a>
             </h3>
@@ -145,7 +155,7 @@ const LoginBtn = () => {
             className="flex flex-col items-center mt-4 text-sm text-center text-gray-400"
           >
             <p className="cursor-default">
-              By signing in, you agree to our
+              By signing up, you agree to our
               <a
                 className="text-blue-400 transition-all duration-100 ease-in-out group"
                 href="#"
@@ -177,4 +187,4 @@ const LoginBtn = () => {
     )
 }
 
-export default LoginBtn
+export default SignBtn

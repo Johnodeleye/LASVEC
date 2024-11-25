@@ -1,0 +1,113 @@
+
+Great idea! Requiring a passport-style profile picture and allowing PDF uploads (for verification purposes) are excellent additions for an e-voting system. Here's how you can integrate those features into your /onboarding page:
+
+/onboarding Page Updates
+Fields for Profile Picture
+Passport-Style Profile Picture Upload
+This ensures uniformity and professionalism in voter profiles.
+
+Field Example:
+
+less
+Copy code
+Upload Passport Photograph:
+[Choose File] (Supported formats: JPG, PNG; Max size: 2MB)
+Guidelines for Upload (display near the field):
+
+Recent photograph, white background.
+Face clearly visible (no hats, glasses, or shadows).
+Backend Tips:
+
+Validate file type (JPG/PNG only).
+Set file size limit (e.g., 2MB).
+Optionally crop/resize the uploaded image to a standardized dimension (e.g., 300x400px).
+Fields for PDF Upload
+Document Uploads (PDFs)
+Allow users to upload necessary documents for verification.
+
+Field Examples:
+
+
+Upload Identification Documents (PDF format only):
+- National Identification Number (NIN) Slip
+- Voter's Card
+- Proof of Address (Utility Bill, etc.)
+
+[Choose File] (Supported format: PDF; Max size: 5MB)
+Allow up to 2-3 document uploads with labels like:
+
+Field 1: NIN Slip
+Field 2: Voter’s Card
+Field 3: Proof of Address or Other Supporting Documents
+Backend Tips:
+
+Validate file type (PDF only).
+Set file size limit for each upload (e.g., 5MB per file).
+Include a total upload size limit (e.g., 15MB for all files combined).
+Final Fields for Onboarding
+Here’s the complete revised list for the onboarding page:
+
+Phone Number (For 2FA).
+Date of Birth (Age verification).
+State of Residence (Auto-filled as Lagos State).
+LGA (Dropdown).
+Residential Address (Full address including street, city, etc.).
+National Identification Number (NIN) (Validated via NIMC if possible).
+Voter's Identification Number (VIN) (Optional).
+Passport Photograph (Upload).
+PDF Document Uploads:
+NIN Slip.
+Voter’s Card.
+Proof of Address (Utility Bill, Bank Statement, etc.).
+Security Question (Account recovery).
+Design Tips
+Drag-and-Drop Support: Make the upload process user-friendly by allowing drag-and-drop file uploads.
+Preview Feature: Show a preview of the uploaded passport photo for confirmation.
+Upload Progress Bar: For large PDF files, show progress indicators to enhance UX.
+Error Messaging: Provide clear error messages for invalid formats or exceeded size limits.
+Post-Onboarding Process
+Redirect users to a confirmation page summarizing their details.
+Include a notice about verification timelines (e.g., "Your details are being reviewed. You will receive a notification within 48 hours.").
+This setup ensures a smooth and professional onboarding process while adhering to verification standards required for an e-voting platform.
+
+
+
+/signup
+
+
+
+Got it! If you're targeting users in Lagos, Nigeria, and want to keep the sign-up page minimal, here's a clean and efficient structure tailored to that context:
+
+/signup Page
+Fields to Include:
+Full Name
+
+First and last name combined in a single field to keep it simple.
+Example: Full Name: [____________]
+Email Address
+
+For account creation and basic communication.
+Example: Email: [____________]
+Password
+
+Encourage strong password practices.
+Example: Password: [____________]
+Confirm Password
+
+To reduce user entry errors.
+Example: Confirm Password: [____________]
+Consent Checkbox
+
+For terms of use and data privacy compliance.
+Example:
+
+Copy code
+[ ] I agree to the Terms of Service and Privacy Policy.
+Sign-Up Button
+
+Action button to complete the process:
+Example: [Sign Up]
+Additional Features (Optional for Signup Page):
+Captcha or Security Question: Prevent bots from accessing the system.
+Link to Login Page: If the user already has an account.
+Example: Already have an account? [Log in here].
