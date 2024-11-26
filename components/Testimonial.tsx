@@ -81,7 +81,7 @@ function Testimony() {
     viewport={{ once: true }}
     transition={{ duration: 1.5 }}  className="relative px-4 py-12 pb-16">
           <h2 className="text-left md:text-center text-4xl font-bold tracking-tight text-blue-600 sm:text-5xl pb-4 px-6 md:pb-6">
-      Read trusted reviews from our customers
+          User Reviews
     </h2>
       <motion.div
         initial={{ opacity: 0, y: 100 }}
@@ -158,9 +158,7 @@ function Testimony() {
             </div>
 
             <p className="mt-4 text-blue-700">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
-              consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius
-              accusamus error officiis atque voluptates magnam!
+            LASVEC E-Voting System ensured seamless and transparent elections for our organization. Their user-friendly interface and robust security features won our trust.
             </p>
           </blockquote>
         </div>
@@ -227,14 +225,12 @@ function Testimony() {
                   </svg>
                 </div>
 
-                <p className="mt-0.5 text-lg font-bold text-blue-900">John Ayomide</p>
+                <p className="mt-0.5 text-lg font-bold text-blue-900">Odeleye John</p>
               </div>
             </div>
 
             <p className="mt-4 text-blue-700">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
-              consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius
-              accusamus error officiis atque voluptates magnam!
+            We've never seen such efficiency! LASVEC's e-voting system reduced voting time by 75% and increased voter participation by 30%. Impressive!
             </p>
           </blockquote>
         </div>
@@ -301,14 +297,12 @@ function Testimony() {
                   </svg>
                 </div>
 
-                <p className="mt-0.5 text-lg font-bold text-blue-900">John Ayomide</p>
+                <p className="mt-0.5 text-lg font-bold text-blue-900">Perspicacious</p>
               </div>
             </div>
 
             <p className="mt-4 text-blue-700">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
-              consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius
-              accusamus error officiis atque voluptates magnam!
+            LASVEC's dedication to electoral integrity shines through their innovative e-voting solution. It's reliable, secure, and easy to use. A game-changer for Nigerian democracy!
             </p>
           </blockquote>
         </div>

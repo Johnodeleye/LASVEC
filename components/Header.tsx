@@ -35,15 +35,15 @@ const Header = () => {
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-blue-500/75" href="#About"> About </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="/#About"> About </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-blue-500/75" href="#Faq"> FAQ </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="/#Faq"> FAQ </a>
             </li>
 
             <li>
-              <a className="text-gray-500 transition hover:text-blue-500/75" href="#Contact"> Contact </a>
+              <a className="text-gray-500 transition hover:text-blue-500/75" href="/#Contact"> Contact </a>
             </li>
 
             <li>
@@ -110,9 +110,9 @@ const Header = () => {
         </div>
         <ul className='flex flex-col items-center gap-2 px-5 mt-5 text-lg font-medium'>
         <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Home</a>
-        <a onClick={() => setMobileMenu(false)} href="#About" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>About Us</a>
-        <a onClick={() => setMobileMenu(false)} href="#Faq" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>FAQ</a>
-        <a onClick={() => setMobileMenu(false)} href="#Contact" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Contact Us</a>
+        <a onClick={() => setMobileMenu(false)} href="/#About" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>About Us</a>
+        <a onClick={() => setMobileMenu(false)} href="/#Faq" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>FAQ</a>
+        <a onClick={() => setMobileMenu(false)} href="/#Contact" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Contact Us</a>
         <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Upcoming Events</a>
         <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Blog</a>
         <a onClick={() => setMobileMenu(false)} href="/register" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent hover:border border-white'>REGISTER</a>

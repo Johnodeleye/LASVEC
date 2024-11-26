@@ -43,7 +43,7 @@ const About  = () => {
       initial={{ opacity: 0, scale: 0.5 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.1 }} 
+      transition={{ duration: 0.1 }} id="Team"
   className="items-center bg-gray-100 rounded-lg shadow sm:flex transition-all duration-500 cursor-pointer hover:bg-blue-600 group">
         <a href="https://perspicaciousdev.vercel.app">
         <img className="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="/John.webp" alt="John Avatar"/>

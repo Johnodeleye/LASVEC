@@ -7,6 +7,7 @@ import Accordion from "@/components/Faq"
 import Hero from "@/components/Hero"
 import Contact from "@/components/Contact"
 import Testimonial from "@/components/Testimonial"
+import Footer from "@/components/Footer"
 
 const page = () => {
   return (

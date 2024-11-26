@@ -4,7 +4,7 @@ import { motion } from "motion/react"
 const Contact = () => {
     return (
         <div>
-            <section className="min-h-screen bg-cover bg-[url(https://www.iri.org/wp-content/uploads/2015/03/2015-03-30_nigerian_voters_demonstrate_commitment_to_process_election_day_logistics_need_improvement_4.jpg)]">
+            <section id="Contact" className="min-h-screen bg-cover bg-[url(https://www.iri.org/wp-content/uploads/2015/03/2015-03-30_nigerian_voters_demonstrate_commitment_to_process_election_day_logistics_need_improvement_4.jpg)]">
          <div
         className="flex flex-col min-h-screen bg-white/75">
         <motion.div

@@ -5,6 +5,7 @@ const inter = Outfit ({ subsets: ['latin'] })
 import ToggleButton from '@/components/ToggleButton';
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "LASVEC | The Future of Voting in Lagos State, Nigeria",
@@ -21,6 +22,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         {/* <ToggleButton /> */}
         <Header/>
         {children}
+        <Footer/>
       </body>
     </html>
   );
