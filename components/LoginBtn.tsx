@@ -1,8 +1,48 @@
 'use client';
 import { BadgeCheck, Vote, Waves } from "lucide-react";
 import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const LoginBtn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+
+    // Clear previous errors
+    setError("");
+
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setError(data.message || "An error occurred");
+    } else {
+      // Successful login - Check the status of onboarding
+      if (data.user.isOnboardingCompleted === false) {
+        // Redirect to onboarding page
+        router.push("/onboarding");
+      } else {
+        // Account is approved, proceed to dashboard
+        router.push("/dashboard");
+      }
+
+      // You can save the token to localStorage, cookies, etc.
+      localStorage.setItem("token", data.token);
+    }
+  };
+
     return (
             <div className="flex items-center justify-center font-poppins bg-[url(https://readymadeui.com/signin-image.webp)] bg-cover bg-center bg-no-repeat">
     <div className="flex items-center justify-center w-screen h-screen bg-white/75">
@@ -25,7 +65,7 @@ const LoginBtn = () => {
           <h2 className="text-3xl font-bold text-left md:text-center cursor-default text-blue-500 pb-6">
           Log in to continue
           </h2>
-          <form action="#" method="post" className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label  className="mb-2 text-lg text-gray-400">Email</label>
               <input
@@ -34,6 +74,8 @@ const LoginBtn = () => {
                 type="email"
                 placeholder="Email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
@@ -43,9 +85,12 @@ const LoginBtn = () => {
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
+            {error && <p className="text-red-500">{error}</p>}
             <a
               className="text-blue-400 transition-all duration-100 ease-in-out group"
               href="#"

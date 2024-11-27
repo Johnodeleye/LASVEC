@@ -24,35 +24,64 @@ export default async function handler(req, res) {
       return res.status(400).json({ success: false, message: 'Invalid email or password' });
     }
 
-    // Check if the user is approved
-    if (user.status !== 'approved') {
-      return res.status(403).json({ success: false, message: 'Account not approved. Please wait for admin approval' });
-    }
-
     // Compare passwords
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ success: false, message: 'Invalid email or password' });
     }
 
-    // Create a JWT token
-    const token = jwt.sign(
-      { id: user._id, email: user.email }, // Payload
-      process.env.JWT_SECRET, // Secret key (add this to your .env file)
-      { expiresIn: '1h' } // Token expiry
-    );
+    // Check if the user has completed onboarding
+    const isOnboardingCompleted = user.onboardingCompleted;  // assuming this field exists
 
-    // Respond with the token and user info
+    if (!user.status === 'approved' && isOnboardingCompleted) {
+      return res.status(200).json({
+        success: true,
+        message: 'Login successful, but your account is not approved. Please wait for admin approval.',
+        token: 'fake-jwt-token', // send token for now
+        user: {
+          id: user._id,
+          fullName: user.fullName,
+          email: user.email,
+          isOnboardingCompleted: isOnboardingCompleted, // Indicating onboarding needs to be finished
+        },
+      });
+    }
+
+    // If the account is approved, proceed with the normal flow
+    if (user.status === 'approved') {
+      // Create a JWT token
+      const token = jwt.sign(
+        { id: user._id, email: user.email }, // Payload
+        process.env.JWT_SECRET, // Secret key
+        { expiresIn: '1h' } // Token expiry
+      );
+
+      // Respond with the token and user info
+      return res.status(200).json({
+        success: true,
+        message: 'Login successful',
+        token,
+        user: {
+          id: user._id,
+          fullName: user.fullName,
+          email: user.email,
+        },
+      });
+    }
+
+    // If onboarding not completed, ask user to complete it
     res.status(200).json({
       success: true,
-      message: 'Login successful',
-      token,
+      message: 'Please complete onboarding to continue',
+      token: 'fake-jwt-token', // Token for the session
       user: {
         id: user._id,
         fullName: user.fullName,
         email: user.email,
+        isOnboardingCompleted: isOnboardingCompleted,
       },
     });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
