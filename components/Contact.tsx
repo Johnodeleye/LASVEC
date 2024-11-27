@@ -1,7 +1,39 @@
 'use client';
 import { motion } from "motion/react"
+import React from "react";
+import Swal from "sweetalert2";
 
 const Contact = () => {
+    const [result, setResult] = React.useState("");
+
+    const onSubmit = async (event:any) => {
+        event.preventDefault();
+        setResult('Sending....');
+        const formData = new FormData(event.target);
+        
+        formData.append('access_key', '8d4a9798-6b50-4e7e-b2d6-55108dd78b15');
+        
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            setResult('Form Submitted Successfully');
+            Swal.fire({
+                title: "Success!",
+                text: "Your message has been recieved",
+                icon: "success"
+              });
+            event.target.reset();
+        } else {
+            alert('Something went wrong',);
+            console.log('Error', data);
+            setResult('');
+        }
+    };
     return (
         <div>
             <section id="Contact" className="min-h-screen bg-cover bg-[url(https://www.iri.org/wp-content/uploads/2015/03/2015-03-30_nigerian_voters_demonstrate_commitment_to_process_election_day_logistics_need_improvement_4.jpg)]">
@@ -80,7 +112,7 @@ const Contact = () => {
                             to hear from you
                         </p>
 
-                        <form className="mt-6">
+                        <form className="mt-6" onSubmit={onSubmit}>
                             <div className="flex-1">
                                 <label className="block mb-2 text-sm text-blue-900">Full Name</label>
                                 <input type="text" placeholder="Your Name" className="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-400 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" />
@@ -97,7 +129,7 @@ const Contact = () => {
                             </div>
 
                             <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
-                                get in touch
+                                {result ? result : 'Send Message'}
                             </button>
                         </form>
                     </div>

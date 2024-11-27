@@ -1,8 +1,70 @@
 'use client';
 import { BadgeCheck, Vote, Waves } from "lucide-react";
 import { signIn } from "next-auth/react"
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const SignBtn = () => {
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [passwordError, setPasswordError] = useState("");  // Password error state
+    const [emailError, setEmailError] = useState("");  // Email error state
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+  
+    const handleSubmit = async (e:any) => {
+      e.preventDefault();
+      setLoading(true);
+      setError("");
+      setPasswordError("");
+      setEmailError("");
+  
+      // Validation checks
+      if (password.length < 8) {
+        setPasswordError("Password must be at least 8 characters.");
+        setLoading(false);
+        return;
+      }
+  
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        setEmailError("Please enter a valid email.");
+        setLoading(false);
+        return;
+      }
+  
+      const userData = {
+        fullName,
+        email,
+        password,
+      };
+  
+      try {
+        const response = await fetch("/api/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        });
+  
+        const data = await response.json();
+  
+        if (data.success) {
+          // Redirect to login or dashboard after successful signup
+          router.push("/login"); // Redirect to login page (or dashboard)
+        } else {
+          setError(data.message); // Show error message from API response
+        }
+      } catch (err) {
+        setError("Something went wrong, please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     return (
             <div className="flex items-center justify-center font-poppins bg-[url(https://readymadeui.com/signin-image.webp)] bg-cover bg-center bg-no-repeat">
     <div className="flex items-center justify-center w-screen h-screen bg-white/75">
@@ -25,10 +87,13 @@ const SignBtn = () => {
           <h2 className="text-2xl font-bold text-left md:text-center cursor-default text-blue-500 pb-6">
           Get Started to continue
           </h2>
-          <form action="#" method="post" className="space-y-4">
+          {error && <p className="text-red-500">{error}</p>}
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label  className="mb-2 text-lg text-gray-400">Full Name</label>
               <input
+               value={fullName}
+               onChange={(e) => setFullName(e.target.value)}
                 id="name"
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="text"
@@ -39,22 +104,28 @@ const SignBtn = () => {
             <div>
               <label  className="mb-2 text-lg text-gray-400">Email</label>
               <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
                 id="email"
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="email"
                 placeholder="Email"
                 required
               />
+               {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
             </div>
             <div>
               <label  className="mb-2 text-lg text-gray-400">Password</label>
               <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="password"
                 placeholder="Password"
                 required
               />
+              {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
             </div>
             <a
               className="text-blue-400 transition-all duration-100 ease-in-out group"
@@ -69,8 +140,9 @@ const SignBtn = () => {
             <button
               className="w-full p-2 mt-6 text-white font-serif transition duration-300 ease-in-out rounded-lg shadow-lg bg-gradient-to-r from-blue-600 to-green-500 hover:scale-105 hover:from-green-500 hover:to-blue-600"
               type="submit"
-            >
-              JOIN LASVEC
+              disabled={loading}
+              >
+                {loading ? "Signing Up..." : "JOIN LASVEC"}
             </button>
           </form>
           <div className="flex flex-col items-center justify-center mt-4 text-sm">
@@ -88,7 +160,9 @@ const SignBtn = () => {
               </a>
             </h3>
           </div>
+
           {/* <!-- Third Party Authentication Options --> */}
+          
           {/* <div
             id="third-party-auth"
             className="flex flex-wrap items-center justify-center mt-5 text-white"
