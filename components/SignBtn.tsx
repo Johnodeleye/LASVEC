@@ -1,69 +1,77 @@
-'use client';
-import { BadgeCheck, Vote, Waves } from "lucide-react";
-import { signIn } from "next-auth/react"
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
+import Skeleton from "./Skeleton";
 
 const SignBtn = () => {
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [passwordError, setPasswordError] = useState("");  // Password error state
-    const [emailError, setEmailError] = useState("");  // Email error state
-    const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const { data: session, status: sessionStatus } = useSession();
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+      if (sessionStatus === "authenticated") {
+        router.replace("/login");
+      }
+    }, [sessionStatus, router]);
   
-    const handleSubmit = async (e:any) => {
+    const isValidEmail = (email: string) => {
+      const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      return emailRegex.test(email);
+    };
+    const handleSubmit = async (e: any) => {
       e.preventDefault();
-      setLoading(true);
-      setError("");
-      setPasswordError("");
-      setEmailError("");
-  
-      // Validation checks
-      if (password.length < 8) {
-        setPasswordError("Password must be at least 8 characters.");
-        setLoading(false);
+      const name = e.target[0].value;
+      const email = e.target[1].value;
+      const password = e.target[2].value;
+      
+      if (!name ) {
+        setError("Enter your name!");
         return;
       }
   
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!emailPattern.test(email)) {
-        setEmailError("Please enter a valid email.");
-        setLoading(false);
+      if (!isValidEmail(email)) {
+        setError("Email is invalid");
         return;
       }
   
-      const userData = {
-        fullName,
-        email,
-        password,
-      };
+      if (!password || password.length < 8) {
+        setError("Password is invalid");
+        return;
+      }
+      
   
       try {
-        const response = await fetch("/api/signup", {
+        const res = await fetch("/api/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(userData),
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
         });
-  
-        const data = await response.json();
-  
-        if (data.success) {
-          // Redirect to login or dashboard after successful signup
-          router.push("/login"); // Redirect to login page (or dashboard)
-        } else {
-          setError(data.message); // Show error message from API response
+        if (res.status === 400) {
+          setError("This email is already registered");
         }
-      } catch (err) {
-        setError("Something went wrong, please try again.");
-      } finally {
-        setLoading(false);
+        if (res.status === 200 || res.status === 201) {
+          setError("");
+          router.push("/"); // Shouldn't this be "/dashboard" instead of "/login"?
+        }
+      } catch (error) {
+        setError("Error, try again");
+        console.log(error);
       }
     };
+  
+    if (sessionStatus === "loading") {
+      return <h1><Skeleton/></h1>;
+    }
+  
 
     return (
             <div className="flex items-center justify-center font-poppins bg-[url(https://readymadeui.com/signin-image.webp)] bg-cover bg-center bg-no-repeat">
@@ -92,8 +100,6 @@ const SignBtn = () => {
             <div>
               <label  className="mb-2 text-lg text-gray-400">Full Name</label>
               <input
-               value={fullName}
-               onChange={(e) => setFullName(e.target.value)}
                 id="name"
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="text"
@@ -104,28 +110,24 @@ const SignBtn = () => {
             <div>
               <label  className="mb-2 text-lg text-gray-400">Email</label>
               <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
                 id="email"
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="email"
                 placeholder="Email"
                 required
               />
-               {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+                <p className="text-red-500 text-sm">{error && error }</p>
             </div>
             <div>
               <label  className="mb-2 text-lg text-gray-400">Password</label>
               <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="password"
                 placeholder="Password"
                 required
               />
-              {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
+              <p className="text-red-500 text-sm">{error && error}</p>
             </div>
             <a
               className="text-blue-400 transition-all duration-100 ease-in-out group"
