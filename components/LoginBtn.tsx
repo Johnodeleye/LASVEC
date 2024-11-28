@@ -1,47 +1,59 @@
 'use client';
 import { BadgeCheck, Vote, Waves } from "lucide-react";
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Skeleton from '@/components/Skeleton';
 
 const LoginBtn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const router = useRouter();
+  const [error, setError] = useState("");
+//   const session = useSession();
+  const { data: session, status: sessionStatus } = useSession();
 
-  const handleSubmit = async (e:any) => {
+  useEffect(() => {
+    if (sessionStatus === "authenticated") {
+      router.replace("/dashboard");
+    }
+  }, [sessionStatus, router]);
+
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
 
-    // Clear previous errors
-    setError("");
+    if (!isValidEmail(email)) {
+      setError("Email is invalid");
+      return;
+    }
 
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
+    if (!password || password.length < 8) {
+      setError("Password is invalid");
+      return;
+    }
+
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
     });
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      setError(data.message || "An error occurred");
+    if (res?.error) {
+      setError("Invalid email or password");
+      if (res?.url) router.replace("/dashboard");
     } else {
-      // Successful login - Check the status of onboarding
-      if (data.user.isOnboardingCompleted === false) {
-        // Redirect to onboarding page
-        router.push("/onboarding");
-      } else {
-        // Account is approved, proceed to dashboard
-        router.push("/dashboard");
-      }
-
-      // You can save the token to localStorage, cookies, etc.
-      localStorage.setItem("token", data.token);
+      setError("");
     }
   };
+
+  if (sessionStatus === "loading") {
+    return <Skeleton/>;
+  }
 
     return (
             <div className="flex items-center justify-center font-poppins bg-[url(https://readymadeui.com/signin-image.webp)] bg-cover bg-center bg-no-repeat">
@@ -73,9 +85,7 @@ const LoginBtn = () => {
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="email"
                 placeholder="Email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                
               />
             </div>
             <div>
@@ -85,9 +95,7 @@ const LoginBtn = () => {
                 className="w-full p-3 duration-300 ease-in-out border border-green-600 rounded-lg shadow-md bg-blue-700 text-white/90 placeholder:text-base focus:scale-104 font-serif"
                 type="password"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+                
               />
             </div>
             {error && <p className="text-red-500">{error}</p>}
@@ -223,3 +231,114 @@ const LoginBtn = () => {
 }
 
 export default LoginBtn
+
+
+
+
+
+// "use client";
+// import React, { useEffect, useState } from "react";
+// import Link from "next/link";
+// import { signIn, useSession } from "next-auth/react";
+// import { useRouter } from "next/navigation";
+// import  Skeleton from '@/components/Skeleton';
+
+// const LoginBtn = () => {
+//   const router = useRouter();
+//   const [error, setError] = useState("");
+// //   const session = useSession();
+//   const { data: session, status: sessionStatus } = useSession();
+
+//   useEffect(() => {
+//     if (sessionStatus === "authenticated") {
+//       router.replace("/dashboard");
+//     }
+//   }, [sessionStatus, router]);
+
+//   const isValidEmail = (email: string) => {
+//     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+//     return emailRegex.test(email);
+//   };
+
+//   const handleSubmit = async (e: any) => {
+//     e.preventDefault();
+//     const email = e.target[0].value;
+//     const password = e.target[1].value;
+
+//     if (!isValidEmail(email)) {
+//       setError("Email is invalid");
+//       return;
+//     }
+
+//     if (!password || password.length < 8) {
+//       setError("Password is invalid");
+//       return;
+//     }
+
+//     const res = await signIn("credentials", {
+//       redirect: false,
+//       email,
+//       password,
+//     });
+
+//     if (res?.error) {
+//       setError("Invalid email or password");
+//       if (res?.url) router.replace("/dashboard");
+//     } else {
+//       setError("");
+//     }
+//   };
+
+//   if (sessionStatus === "loading") {
+//     return <Skeleton/>;
+//   }
+
+//   return (
+//     sessionStatus !== "authenticated" && (
+//       <div className="flex flex-col items-center justify-between min-h-screen p-24">
+//         <div className="bg-[#212121] p-8 rounded shadow-md w-96">
+//           <h1 className="mb-8 text-4xl font-semibold text-center">Login</h1>
+//           <form onSubmit={handleSubmit}>
+//             <input
+//               type="text"
+//               className="w-full px-3 py-2 mb-4 text-black border border-gray-300 rounded focus:outline-none focus:border-blue-400 focus:text-black"
+//               placeholder="Email"
+//               required
+//             />
+//             <input
+//               type="password"
+//               className="w-full px-3 py-2 mb-4 text-black border border-gray-300 rounded focus:outline-none focus:border-blue-400 focus:text-black"
+//               placeholder="Password"
+//               required
+//             />
+//             <button
+//               type="submit"
+//               className="w-full py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+//             >
+//               {" "}
+//               Sign In
+//             </button>
+//             <p className="text-red-600 text-[16px] mb-4">{error && error}</p>
+//           </form>
+//           <button
+//             className="w-full py-2 text-white bg-black rounded hover:bg-gray-800"
+//             onClick={() => {
+//               signIn("github");
+//             }}
+//           >
+//             Sign In with Github
+//           </button>
+//           <div className="mt-4 text-center text-gray-500">- OR -</div>
+//           <Link
+//             className="block mt-2 text-center text-blue-500 hover:underline"
+//             href="/register"
+//           >
+//             Register Here
+//           </Link>
+//         </div>
+//       </div>
+//     )
+//   );
+// };
+
+// export default Login;

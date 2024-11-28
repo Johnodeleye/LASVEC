@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Outfit, Open_Sans } from 'next/font/google';
 const inter = Outfit ({ subsets: ['latin'] })
-import ToggleButton from '@/components/ToggleButton';
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
+import { NextAuthProvider } from "../components/Providers";
+import Mobile from "@/components/Mobile";
 
 export const metadata: Metadata = {
   title: "LASVEC | The Future of Voting in Lagos State, Nigeria",
@@ -19,10 +20,12 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
         <meta name="google-site-verification" content="P2r_Z6CA_GDV7PMAudkhj9jsvXZfGY1Aq77CTvllPJw" />
       </head>
       <body className={inter.className} >
-        {/* <ToggleButton /> */}
+        <NextAuthProvider>
         <Header/>
+        {/* <Mobile/> */}
         {children}
         <Footer/>
+        </NextAuthProvider>
       </body>
     </html>
   );

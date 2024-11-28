@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'motion/react';
+import Mobile from './Mobile';
 
 const Hero = () => {
     return (
