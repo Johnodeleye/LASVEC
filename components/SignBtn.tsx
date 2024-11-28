@@ -60,7 +60,7 @@ const SignBtn = () => {
         }
         if (res.status === 200 || res.status === 201) {
           setError("");
-          router.push("/"); // Shouldn't this be "/dashboard" instead of "/login"?
+          router.push("/login"); // Shouldn't this be "/dashboard" instead of "/login"?
         }
       } catch (error) {
         setError("Error, try again");
