@@ -1,5 +1,5 @@
 'use client';
-import { SquareX } from "lucide-react";
+import { SquareX, User } from "lucide-react";
 import { motion } from "motion/react";
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
@@ -80,33 +80,27 @@ const Header = () => {
                 <Link onClick={() => setIsPopupVisible(false)} className="text-justify hover:bg-blue-500 text-white rounded-xl" href={`/authors/${sessionEmail}`}>🟢Go to Profile</Link>
                 <Link onClick={() => setIsPopupVisible(false)} className="text-justify hover:bg-blue-500 rounded-xl text-white" href={'/create-post'}>🟢Create Post</Link>
                 <Link onClick={() => setIsPopupVisible(false)} className="text-justify hover:bg-blue-500 rounded-xl text-white" href={'https://whatsapp.com/channel/0029Vajn8TuFcovziHg7rM2B'}>🟢Join Community</Link>
-                <button onClick={() => signOut()} className="px-2 py-2 bg-blue-500 rounded">
+                <button onClick={() => signOut({ callbackUrl: process.env.NEXTAUTH_URL || '/' })} className="px-2 py-2 bg-blue-500 rounded">
                   Sign Out
                 </button>
               </div>
-              <div className="flex items-center gap-2">
-                {/* <Link className="items-center hidden gap-2 mr-6 md:flex btn" href={'/create-post'}>
-                  <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </span>
-                  <span className="text-white">Create new</span>
-                </Link> */}
-                <div className="relative cursor-pointer ml-[120px] md:ml-0" onClick={() => setIsPopupVisible((prev) => !prev)}>
+
+              <div className="relative cursor-pointer " onClick={() => setIsPopupVisible((prev) => !prev)}>
                   <Image
-                    src={session?.user?.image || '/lagos.png'}
+                    src={session?.user?.image || 'https://img.icons8.com/color/48/user-male-circle--v1.png' }
                     width={36}
                     height={36}
                     alt="profile image"
-                    className="transition rounded-full shadow md:mr-9 hover:scale-105"
+                    className="transition rounded-full shadow  hover:scale-105"
                   />
-                  <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={5} stroke="blue" className="absolute bottom-0 w-4 h-4 -translate-x-1/2 left-1/2 xs:block" style={{ zIndex: 1 }} />
-                  </span>
                 </div>
-              </div>
+
               <Mobile/>
+              <div className="hidden md:flex justify-end">
+                <a className="rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow" href="/dashboard">
+                  DASHBOARD
+                </a>
+              </div>
             </>
           ) : (
             <div className="flex items-center gap-4">

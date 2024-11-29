@@ -66,6 +66,9 @@ export const authOptions: any = {
         }
       }
     },
+    pages: {
+        signOut: '/', // Redirect to the root of your site after sign out
+      },
   },
 };
 

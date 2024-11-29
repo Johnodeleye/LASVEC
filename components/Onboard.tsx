@@ -1,6 +1,10 @@
+
+
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CldUploadButton } from 'next-cloudinary';
+import { useRouter } from 'next/navigation'; // Import useRouter
+import Skeleton from './Skeleton';
 
 interface ImageData {
   url: string;
@@ -8,7 +12,7 @@ interface ImageData {
 }
 
 const Onboarding: React.FC = () => {
-  // Form state for user details and document uploads
+  const [isOnboarded, setIsOnboarded] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -17,9 +21,8 @@ const Onboarding: React.FC = () => {
     state: '',
     lga: '',
     residentialAddress: '',
+    nin: '',  // Added NIN
   });
-
-  // State to hold the uploaded images (NIN, Passport, etc.)
   const [uploadedImages, setUploadedImages] = useState<Record<string, ImageData>>({
     nin: { url: '', publicId: '' },
     passport: { url: '', publicId: '' },
@@ -28,6 +31,25 @@ const Onboarding: React.FC = () => {
     birthCertificate: { url: '', publicId: '' },
     proofOfResidency: { url: '', publicId: '' }
   });
+  const [result, setResult] = React.useState("");
+
+  const router = useRouter();
+
+  // Check if user is onboarded
+  useEffect(() => {
+    const checkUserOnboardingStatus = async () => {
+        const response = await fetch('/api/admin/users');
+        const result = await response.json();
+      
+        // If the user is already onboarded, redirect to the dashboard
+        if (result.success && result.onboarded === true) {
+          router.push('/dashboard');
+        } else {
+          setIsOnboarded(false);  // Proceed with the onboarding if not onboarded
+        }
+      };
+    checkUserOnboardingStatus();
+  }, [router]);
 
   // Handle input changes in form
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,43 +60,36 @@ const Onboarding: React.FC = () => {
   // Handle image upload and update the state for each document
   const handleImageUpload = (result: any, documentType: string) => {
     const { secure_url, public_id } = result.info;
-
-    // Update the specific document type in the state
     setUploadedImages(prevState => ({
       ...prevState,
-      [documentType]: {
-        url: secure_url,
-        publicId: public_id
-      }
+      [documentType]: { url: secure_url, publicId: public_id }
     }));
-
-    console.log(`${documentType} Uploaded URL:`, secure_url);
-    console.log(`${documentType} Public ID:`, public_id);
   };
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setResult('Logging in....');
 
-    // Here, you can send formData and uploadedImages to your backend via a POST request.
-    const requestBody = {
-      ...formData,
-      uploadedImages,
-    };
+    const requestBody = { ...formData, uploadedImages };
 
-    // Sending data using fetch
     const response = await fetch('/api/onboarding', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestBody),
     });
 
-    const result = await response.json();
-    console.log('Server response:', result);
-    // Handle response (e.g., show success message, redirect, etc.)
+    if (response.ok) {
+    setResult('Logged in Successfully');
+      router.push('/dashboard');
+    } else {
+      console.error('Form submission failed');
+    }
   };
+
+  if (isOnboarded) {
+    return <Skeleton/>
+  }
 
   return (
     <div className="max-w-4xl mx-auto py-8 px-4">
@@ -123,6 +138,20 @@ const Onboarding: React.FC = () => {
           />
         </div>
 
+        {/* NIN */}
+        <div>
+          <label htmlFor="nin" className="block text-lg font-medium text-gray-700">NIN Number</label>
+          <input
+            type="text"
+            id="nin"
+            name="nin"
+            value={formData.nin}
+            onChange={handleInputChange}
+            className="w-full p-3 border border-gray-300 rounded-md mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+
         {/* Date of Birth */}
         <div>
           <label htmlFor="dateOfBirth" className="block text-lg font-medium text-gray-700">Date of Birth</label>
@@ -153,7 +182,7 @@ const Onboarding: React.FC = () => {
 
         {/* LGA */}
         <div>
-          <label htmlFor="lga" className="block text-lg font-medium text-gray-700">LGA (Local Government Area)</label>
+          <label htmlFor="lga" className="block text-lg font-medium text-gray-700">LGA</label>
           <input
             type="text"
             id="lga"
@@ -216,26 +245,42 @@ const Onboarding: React.FC = () => {
               </div>
             </CldUploadButton>
           </div>
-          
-          {/* Passport Upload */}
+
+          {/* Birth Certificate Upload */}
           <div>
-            <h3 className="text-lg font-medium text-gray-700">Passport</h3>
+            <h3 className="text-lg font-medium text-gray-700">Birth Certificate</h3>
             <CldUploadButton
               uploadPreset="lasvec"
-              onSuccess={(result) => handleImageUpload(result, 'passport')}
+              onSuccess={(result) => handleImageUpload(result, 'birthCertificate')}
               className="border-dashed border-2 border-gray-400 p-4 rounded-md w-full"
             >
               <div>
-                {uploadedImages.passport.url ? (
-                  <img src={uploadedImages.passport.url} alt="Passport" className="h-48 w-48 object-cover rounded mx-auto" />
+                {uploadedImages.birthCertificate.url ? (
+                  <img src={uploadedImages.birthCertificate.url} alt="Birth Certificate" className="h-48 w-48 object-cover rounded mx-auto" />
                 ) : (
-                  <p className="text-center text-gray-600">Click to upload Passport</p>
+                  <p className="text-center text-gray-600">Click to upload Birth Certificate</p>
                 )}
               </div>
             </CldUploadButton>
           </div>
 
-          {/* Add other document upload fields here... */}
+          {/* Proof of Residency Upload */}
+          <div>
+            <h3 className="text-lg font-medium text-gray-700">Proof Of Residency</h3>
+            <CldUploadButton
+              uploadPreset="lasvec"
+              onSuccess={(result) => handleImageUpload(result, 'proofOfResidency')}
+              className="border-dashed border-2 border-gray-400 p-4 rounded-md w-full"
+            >
+              <div>
+                {uploadedImages.proofOfResidency.url ? (
+                  <img src={uploadedImages.proofOfResidency.url} alt="Proof of Residency" className="h-48 w-48 object-cover rounded mx-auto" />
+                ) : (
+                  <p className="text-center text-gray-600">Click to upload Proof Of Residency</p>
+                )}
+              </div>
+            </CldUploadButton>
+          </div>
         </div>
 
         {/* Submit Button */}
@@ -244,7 +289,7 @@ const Onboarding: React.FC = () => {
             type="submit"
             className="w-full py-3 bg-blue-600 text-white text-xl rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            Submit
+            {result ? result : 'Submit'}
           </button>
         </div>
       </form>

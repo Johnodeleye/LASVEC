@@ -26,6 +26,7 @@ export default async function handler(req, res) {
         lga,
         residentialAddress,
         status: 'pending',  // Status will remain 'pending' until verified by admin
+        onboarded: 'true'
       },
       { new: true } // Return the updated user document
     );

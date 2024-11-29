@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   phone: { type: String },
+  nin: { type: String },
   dateOfBirth: { type: Date },
   state: { type: String, default: 'Lagos' },
   lga: { type: String },
@@ -17,6 +18,10 @@ const UserSchema = new mongoose.Schema({
     enum: ['pending', 'approved', 'rejected'], 
     default: 'pending' 
   },
+  onboarded: { 
+    type: Boolean, 
+    default: false 
+  },  
   createdAt: { type: Date, default: Date.now },
 });
 

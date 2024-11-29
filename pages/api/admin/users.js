@@ -1,24 +1,34 @@
+
 import connectMongo from '@/lib/mongodb';
 import User from '@/models/User';
+import { getSession } from 'next-auth/react'; // Assuming you're using NextAuth.js for authentication
 
-// GET /api/admin/users
+// GET /api/user/status
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
   try {
-    await connectMongo();
-
-    // Fetch all users and their statuses
-    const users = await User.find({}).select('fullName email status'); // You can adjust the fields here
-    if (users.length === 0) {
-      return res.status(404).json({ success: false, message: 'No users found' });
+    // Get the current session (logged-in user)
+    const session = await getSession({ req });
+    if (!session || !session.user) {
+      return res.status(401).json({ success: false, message: 'User not authenticated' });
     }
 
+    await connectMongo();
+
+    // Find the user in the database using their email (you can use other identifiers)
+    const user = await User.findOne({ email: session.user.email }).select('onboarded');
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    // Return the onboarded status
     res.status(200).json({
       success: true,
-      users,
+      onboarded: user.onboarded,
     });
   } catch (err) {
     console.error(err);

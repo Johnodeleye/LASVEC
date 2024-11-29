@@ -1,4 +1,3 @@
-// import cloudinary from '../../lib/cloudinary';
 // import connectMongo from '../../lib/mongodb';
 // import User from '../../models/User';
 // import { verify } from 'jsonwebtoken';
