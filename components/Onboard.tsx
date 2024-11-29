@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { CldUploadButton } from 'next-cloudinary';
 import { useRouter } from 'next/navigation'; // Import useRouter
 import Skeleton from './Skeleton';
+import { useSession } from 'next-auth/react';
 
 interface ImageData {
   url: string;
@@ -33,6 +34,7 @@ const Onboarding: React.FC = () => {
   });
   const [result, setResult] = React.useState("");
 
+  const { data: session, status: sessionStatus } = useSession();
   const router = useRouter();
 
   // Check if user is onboarded
@@ -86,6 +88,11 @@ const Onboarding: React.FC = () => {
       console.error('Form submission failed');
     }
   };
+
+  if (sessionStatus === "loading") {
+    return <Skeleton />;
+  }
+
 
   if (isOnboarded) {
     return <Skeleton/>
