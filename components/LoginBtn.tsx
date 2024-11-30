@@ -40,13 +40,6 @@ const LoginBtn = () => {
       password,
     });
 
-    if (res?.ok) {
-      setResult('Logged in Successfully');
-        router.push('/onboarding');
-      } else {
-        console.error('Form submission failed');
-      }
-
     if (res?.error) {
       setError("Invalid email or password");
     } else {
