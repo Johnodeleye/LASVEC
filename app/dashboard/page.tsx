@@ -56,16 +56,16 @@ const Dashboard = () => {
           <h2 className="text-2xl font-bold">e-Voting Dashboard</h2>
           <ul className="mt-6 space-y-4">
             <li>
-              <a href="/dashboard" className="text-lg hover:text-blue-300">Home</a>
+              <a href="/" className="text-lg hover:text-blue-300">Home</a>
             </li>
             <li>
-              <a href="/profile" className="text-lg hover:text-blue-300">Profile</a>
+              <a href="#" className="text-lg hover:text-blue-300">Profile</a>
             </li>
             <li>
-              <a href="/elections" className="text-lg hover:text-blue-300">Elections</a>
+              <a href="#" className="text-lg hover:text-blue-300">Elections</a>
             </li>
             <li>
-              <a href="/settings" className="text-lg hover:text-blue-300">Settings</a>
+              <a href="#" className="text-lg hover:text-blue-300">Settings</a>
             </li>
           </ul>
         </div>
