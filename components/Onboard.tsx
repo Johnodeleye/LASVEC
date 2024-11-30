@@ -37,21 +37,35 @@ const Onboarding: React.FC = () => {
   const { data: session, status: sessionStatus } = useSession();
   const router = useRouter();
 
-  // Check if user is onboarded
   useEffect(() => {
     const checkUserOnboardingStatus = async () => {
-        const response = await fetch('/api/admin/users');
+      try {
+        const response = await fetch('/api/admin/users', {
+          method: 'GET',
+          headers: {
+            'Cache-Control': 'no-cache',
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch onboarding status');
+        }
+  
         const result = await response.json();
-      
-        // If the user is already onboarded, redirect to the dashboard
-        if (result.success && result.onboarded === true) {
+  
+        if (result.success && result.onboarded) {
           router.push('/dashboard');
         } else {
-          setIsOnboarded(false);  // Proceed with the onboarding if not onboarded
+          setIsOnboarded(false); // Not onboarded
         }
-      };
+      } catch (error) {
+        console.error('Error fetching onboarding status:', error);
+      }
+    };
+  
     checkUserOnboardingStatus();
   }, [router]);
+  
 
   // Handle input changes in form
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
