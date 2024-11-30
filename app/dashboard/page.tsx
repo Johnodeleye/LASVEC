@@ -1,17 +1,17 @@
 'use client';
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Skeleton from "@/components/Skeleton"; // Assuming you have a Skeleton component for loading states
+import Skeleton from "@/components/Skeleton";
+import { redirect } from "next/navigation";
 
 const Dashboard = () => {
   const { data: session, status: sessionStatus } = useSession();
   const [userData, setUserData] = useState<any>(null);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
-    // Fetch additional user data (e.g., voting status, upcoming elections)
     if (session?.user?.email) {
-      // Fetch user data (e.g., voting progress, elections data, etc.)
-      // Replace this with actual API call to fetch user-related data (e.g., voting status, elections)
+      // Mock user data, replace with actual API call
       setUserData({
         hasVoted: false,
         upcomingElections: [
@@ -30,12 +30,30 @@ const Dashboard = () => {
     return <Skeleton />;
   }
 
+  if(!session){
+    redirect('/login')
+  }
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col p-6">
-      {/* Sidebar */}
+    <div className="min-h-screen bg-gray-100">
+      {/* Mobile Navigation */}
+      <div className="flex justify-between items-center bg-blue-600 text-white px-4 py-3 md:hidden">
+        <h2 className="text-xl font-bold">e-Voting Dashboard</h2>
+        <button
+          className="text-white"
+          onClick={() => setShowSidebar(!showSidebar)}
+        >
+          ☰
+        </button>
+      </div>
+
       <div className="flex">
-        <div className="w-64 bg-blue-600 text-white p-4 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold">LASVEC Dashboard</h2>
+        {/* Sidebar */}
+        <div
+          className={`${
+            showSidebar ? "block" : "hidden"
+          } fixed inset-0 z-40 bg-blue-600 text-white p-4 w-64 md:relative md:block md:w-64`}
+        >
+          <h2 className="text-2xl font-bold">e-Voting Dashboard</h2>
           <ul className="mt-6 space-y-4">
             <li>
               <a href="/dashboard" className="text-lg hover:text-blue-300">Home</a>
@@ -53,10 +71,12 @@ const Dashboard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 ml-4">
+        <div className="flex-1 ml-0 md:ml-4 px-4 md:px-6">
           <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-            <h1 className="text-3xl font-semibold text-blue-600">Welcome Back, {session?.user?.name}!</h1>
-            <p className="mt-2 text-gray-600">We are glad to have you here. Let's take a look at your dashboard.</p>
+            <h1 className="text-3xl font-semibold text-blue-600">
+              Welcome Back, {session?.user?.name}!
+            </h1>
+            <p className="mt-2 text-gray-600">Let’s explore your dashboard.</p>
           </div>
 
           {/* Voting Progress */}
@@ -64,9 +84,9 @@ const Dashboard = () => {
             <h2 className="text-2xl font-semibold text-blue-600">Voting Progress</h2>
             <div className="mt-4">
               {userData?.hasVoted ? (
-                <p className="text-green-500">You have already voted in the upcoming elections!</p>
+                <p className="text-green-500">You have already voted!</p>
               ) : (
-                <p className="text-red-500">You haven't voted yet. Please participate in the upcoming elections.</p>
+                <p className="text-red-500">You haven’t voted yet. Participate now!</p>
               )}
             </div>
           </div>
