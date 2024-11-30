@@ -40,6 +40,13 @@ const LoginBtn = () => {
       password,
     });
 
+    if (res?.ok) {
+      setResult('Logged in Successfully');
+        router.push('/onboarding');
+      } else {
+        console.error('Form submission failed');
+      }
+
     if (res?.error) {
       setError("Invalid email or password");
     } else {
@@ -51,25 +58,9 @@ const LoginBtn = () => {
     return <Skeleton />;
   }
 
-    // Check if user is onboarded
-  useEffect(() => {
-      const checkUserOnboardingStatus = async () => {
-          const response = await fetch('/api/admin/users');
-          const result = await response.json();
-        
-          // If the user is already onboarded, redirect to the dashboard
-          if (result.success && result.onboarded === true) {
-            router.push('/dashboard');
-          } else {
-            setIsOnboarded(false);  // Proceed with the onboarding if not onboarded
-          }
-        };
-      checkUserOnboardingStatus();
-    }, [router]);
-
-  if(session){
-    redirect('/dashboard')
-  }
+  // if(session){
+  //   redirect('/onboarding')
+  // }
 
   return (
     <div className="flex items-center justify-center font-poppins bg-[url(https://readymadeui.com/signin-image.webp)] bg-cover bg-center bg-no-repeat">
