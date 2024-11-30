@@ -3,7 +3,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { CldUploadButton } from 'next-cloudinary';
-import { useRouter } from 'next/navigation'; // Import useRouter
+import { redirect, useRouter } from 'next/navigation'; // Import useRouter
 import Skeleton from './Skeleton';
 import { useSession } from 'next-auth/react';
 
@@ -71,7 +71,7 @@ const Onboarding: React.FC = () => {
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setResult('Logging in....');
+    setResult('Loading....');
 
     const requestBody = { ...formData, uploadedImages };
 
@@ -93,6 +93,9 @@ const Onboarding: React.FC = () => {
     return <Skeleton />;
   }
 
+  if(!session){
+    redirect('/login')
+  }
 
   if (isOnboarded) {
     return <Skeleton/>

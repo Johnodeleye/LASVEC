@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Skeleton from "./Skeleton";
 
@@ -10,18 +10,24 @@ const SignBtn = () => {
     const router = useRouter();
     const { data: session, status: sessionStatus } = useSession();
     const [loading, setLoading] = useState(false);
+    const [result, setResult] = React.useState("");
 
-    useEffect(() => {
-      if (sessionStatus === "authenticated") {
-        router.replace("/login");
-      }
-    }, [sessionStatus, router]);
+    // useEffect(() => {
+    //   if (sessionStatus === "authenticated") {
+    //     router.replace("/login");
+    //   }
+    // }, [sessionStatus, router]);
+
+    if(session){
+      redirect('/dashboard')
+    }
   
     const isValidEmail = (email: string) => {
       const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
       return emailRegex.test(email);
     };
     const handleSubmit = async (e: any) => {
+      setResult('Signing up....');
       e.preventDefault();
       const name = e.target[0].value;
       const email = e.target[1].value;
@@ -144,7 +150,7 @@ const SignBtn = () => {
               type="submit"
               disabled={loading}
               >
-                {loading ? "Signing Up..." : "JOIN LASVEC"}
+                {result ? result : 'Submit'}
             </button>
           </form>
           <div className="flex flex-col items-center justify-center mt-4 text-sm">

@@ -40,7 +40,7 @@ const Mobile = () => {
               <a onClick={() => setMobileMenu(false)} href="/#Contact" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Contact Us</a>
               <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Blog</a>
               <a onClick={() => setMobileMenu(false)} href="/" className='inline-block px-4 py-2 rounded-full cursor-pointer hover:text-red-500'>Upcoming Events</a> 
-              <a onClick={() => setMobileMenu(false)} href="/register" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent hover:border border-white'>Dashboard</a>
+              <a onClick={() => setMobileMenu(false)} href="/dashboard" className='inline-block px-4 py-1 rounded cursor-pointer hover:text-red-500 bg-red-500 hover:bg-transparent hover:border border-white'>Dashboard</a>
             </ul>
 
             <div className="px-10 flex justify-center text-center mt-36 font-bold">

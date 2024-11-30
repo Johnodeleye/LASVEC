@@ -1,34 +1,17 @@
 'use client';
 import { BadgeCheck, Vote, Waves } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Skeleton from '@/components/Skeleton';
+import React from "react";
 
 const LoginBtn = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const { data: session, status: sessionStatus } = useSession();
-
-  useEffect(() => {
-    const checkOnboardingStatus = async () => {
-      if (sessionStatus === "authenticated") {
-        // Fetch the user's onboarding status from your backend or session
-        const response = await fetch('/api/admin/users'); // Update with the correct API endpoint
-        const result = await response.json();
-
-        if (result.onboarded) {
-          // If user is onboarded, redirect to /dashboard
-          router.replace('/dashboard');
-        } else {
-          // Otherwise, redirect to /onboarding
-          router.replace('/onboarding');
-        }
-      }
-    };
-
-    checkOnboardingStatus();
-  }, [sessionStatus, router]);
+  const [result, setResult] = React.useState("");
+  const [isOnboarded, setIsOnboarded] = useState(false);
 
   const isValidEmail = (email: string) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -36,6 +19,7 @@ const LoginBtn = () => {
   };
 
   const handleSubmit = async (e: any) => {
+    setResult('Logging in....');
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
@@ -65,6 +49,26 @@ const LoginBtn = () => {
 
   if (sessionStatus === "loading") {
     return <Skeleton />;
+  }
+
+    // Check if user is onboarded
+  useEffect(() => {
+      const checkUserOnboardingStatus = async () => {
+          const response = await fetch('/api/admin/users');
+          const result = await response.json();
+        
+          // If the user is already onboarded, redirect to the dashboard
+          if (result.success && result.onboarded === true) {
+            router.push('/dashboard');
+          } else {
+            setIsOnboarded(false);  // Proceed with the onboarding if not onboarded
+          }
+        };
+      checkUserOnboardingStatus();
+    }, [router]);
+
+  if(session){
+    redirect('/dashboard')
   }
 
   return (
@@ -109,7 +113,7 @@ const LoginBtn = () => {
                   className="w-full p-2 mt-6 text-white font-serif transition duration-300 ease-in-out rounded-lg shadow-lg bg-gradient-to-r from-blue-600 to-green-500 hover:scale-105 hover:from-green-500 hover:to-blue-600"
                   type="submit"
                 >
-                  LOG IN
+                   {result ? result : 'LOG IN'}
                 </button>
               </form>
               <div className="flex flex-col items-center justify-center mt-4 text-sm">
