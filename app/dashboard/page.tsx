@@ -37,7 +37,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Mobile Navigation */}
       <div className="flex justify-between items-center bg-blue-600 text-white px-4 py-3 md:hidden">
-        <h2 className="text-xl font-bold">e-Voting Dashboard</h2>
+        <h2 className="text-xl font-bold">LASVEC Dashboard</h2>
         <button
           className="text-white"
           onClick={() => setShowSidebar(!showSidebar)}
@@ -53,7 +53,7 @@ const Dashboard = () => {
             showSidebar ? "block" : "hidden"
           } fixed inset-0 z-40 bg-blue-600 text-white p-4 w-64 md:relative md:block md:w-64`}
         >
-          <h2 className="text-2xl font-bold">e-Voting Dashboard</h2>
+          <h2 className="text-2xl font-bold">LASVEC Dashboard</h2>
           <ul className="mt-6 space-y-4">
             <li>
               <a href="/" className="text-lg hover:text-blue-300">Home</a>
