@@ -58,9 +58,9 @@ const LoginBtn = () => {
     return <Skeleton />;
   }
 
-  // if(session){
-  //   redirect('/onboarding')
-  // }
+  if(session){
+    redirect('/onboarding')
+  }
 
   return (
     <div className="flex items-center justify-center font-poppins bg-[url(https://readymadeui.com/signin-image.webp)] bg-cover bg-center bg-no-repeat">
